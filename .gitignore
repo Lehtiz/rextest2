@@ -8,5 +8,5 @@
 *.html
 logs
 logs/*
-
+*.zip
 
