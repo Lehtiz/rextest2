@@ -33,10 +33,9 @@ GITHUBREPO="rex-test-autoreport/issueReportTest" # e.g. "projectowner/project"
 # OPTIONS
 #
 # Option for preserving test output files after archive has been created
-# default true
-configPreserveLogs = True
+configPreserveLogs = False
 # Option for moving test output files to an old archives folder (debug-standalone-run)
-# default true, if preserveLogs is set to false option is ignored
+# if preserveLogs is set to false option is ignored
 configMoveOld = False
 # Option for cleaning up (removing temp files) the the folder after running the script
 # default true
