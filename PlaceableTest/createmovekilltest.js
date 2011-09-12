@@ -154,7 +154,7 @@ function evaluateResults(test1, test2, test3, test4){
         print("coordinate mismatch");
     }
     if(!test4){
-        print("Entity is not alive");
+        print("Entity is still alive");
     }
     
     if(test1 && test2 && test3 && test4){
