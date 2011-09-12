@@ -1,4 +1,3 @@
-//entity hascomponent
 var isserver = server.IsRunning();
 var outputEnabled = true;
 
@@ -87,6 +86,7 @@ function checkEntityLocation(entityName, x, y, z){
         print("no entity found")
     }
 }
+
 function moveEntity(ent, x, y ,z){
     var entity = myScene.GetEntityByName(ent);
     if(entity != null){
@@ -104,6 +104,7 @@ function moveEntity(ent, x, y ,z){
         print("no entity found")
     } 
 }
+
 function removeEntity(ent){
     var entity = myScene.GetEntityByName(ent);
     if (entity != null) {
@@ -117,6 +118,7 @@ function removeEntity(ent){
         print("No entity found");
     }
 }
+
 function isAlive(ent, expected){
     var status = false;
     var entity = myScene.GetEntityByName(ent);
@@ -138,9 +140,6 @@ function isAlive(ent, expected){
     }
     
     return boolmatch;
-}
-function quit(){
-    framework.Exit();
 }
 
 function evaluateResults(test1, test2, test3, test4){
@@ -208,6 +207,4 @@ function main(){
     }
     quit();
 }
-
-//frame.DelayedExecute(1).Triggered.connect(this, main);
 
