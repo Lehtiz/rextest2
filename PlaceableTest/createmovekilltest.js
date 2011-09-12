@@ -1,5 +1,6 @@
 var isserver = server.IsRunning();
 var outputEnabled = true;
+var entityName = "box";
 
 var x1 = Math.floor(10*Math.random());
 var y1 = Math.floor(10*Math.random());
@@ -50,7 +51,7 @@ function createEntity(entityName, x, y, z){
     transform.pos.z = pos_z;
     placeable.transform = transform;
     
-    //scene.EmitEntityCreated(entity);
+    scene.EmitEntityCreated(entity);
 }
 
 function checkEntityLocation(entityName, x, y, z){
@@ -69,7 +70,6 @@ function checkEntityLocation(entityName, x, y, z){
         if(entity.placeable.transform.pos.z == z){
             zbool = true;
         }
-        
         if(outputEnabled){
             print("Checking if old and new coordinates match");
             print(" x "+ x +":" + entity.placeable.transform.pos.x + " " + xbool);
@@ -135,7 +135,6 @@ function isAlive(ent, expected){
     if(status != expected){
         boolmatch = false;
     }
-    
     if(outputEnabled){
         print("Entity is alive: " + status);
     }
@@ -172,8 +171,6 @@ function evaluateResults(test1, test2, test3, test4){
     return testResult;
 }
 
-var entityName = "box";
-
 //use integers, doubles seem to cause differences in client
 /*
 //initial location
@@ -202,7 +199,6 @@ function main(){
     if(outputEnabled){
         print("##########################")
     }
-    
     if(outputEnabled){
         evaluateResults(test1, test2, test3, test4);
     }
