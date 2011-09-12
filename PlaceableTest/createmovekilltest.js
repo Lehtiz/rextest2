@@ -108,7 +108,7 @@ function moveEntity(ent, x, y ,z){
 
 function removeEntity(ent){
     var entity = myScene.GetEntityByName(ent);
-    if (entity != null) {
+    if (entity != null){
         if(outputEnabled){
             print("ACTION: Removing entity");
         }
@@ -123,10 +123,10 @@ function removeEntity(ent){
 function isAlive(ent, expected){
     var status = false;
     var entity = myScene.GetEntityByName(ent);
-    if (entity == null) {
+    if (entity == null){
         status = false;
     }
-    if (entity != null) {
+    if (entity != null){
         status = true;
     }
     if(status == expected){
