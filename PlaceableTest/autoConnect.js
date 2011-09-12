@@ -4,24 +4,23 @@
 scene = framework.Scene();
 
 var randomnumber=Math.floor(Math.random()*100);
-var scenename = "testapp";
 
 
 function AutoConnect(){
     var isserver = server.IsRunning() || server.IsAboutToStart();
     if(isserver==false){
         client.Login("localhost",2345,"Guest"+randomnumber.toString()," ","udp");
-        goviewer();
+        engine.IncludeFile("/home/mikko/src/rextest2/PlaceableTest/createmovekilltest.js");
     }
     if(isserver==true){
-        goserver();
+        print("server");
     }
 }
 
 function Quit(){
     framework.Exit();
 }
-
+/*
 //me = framework.server();
 function goserver(){
     print("server");
@@ -31,12 +30,13 @@ function goserver(){
 }
 function goviewer(){
     print("viewer");
-    engine.IncludeFile("/home/mikko/src/rextest2/PlaceableTest/createmovekilltest.js")
+    
     //print(scene.GetSceneRaw());
     //viewer();
     //var avatarEntity = scene.CreateEntityRaw(scene.NextFreeId())
     //scene.EmitEntityCreatedRaw(avatarEntity);
 }
+
 
 function viewer(){
 
@@ -54,7 +54,6 @@ function viewer(){
 
 
 
-/*
 //create a script entity and run it
 function viewer2(){
     print("viewer");

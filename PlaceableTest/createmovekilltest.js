@@ -1,24 +1,42 @@
 //entity hascomponent
-print("#####################ASDDSDSADSSAD#####################");
 var isserver = server.IsRunning();
 var outputEnabled = true;
 
+var x1 = Math.floor(10*Math.random());
+var y1 = Math.floor(10*Math.random());
+var z1 = Math.floor(10*Math.random());
+
+var x2 = Math.floor(10*Math.random());
+var y2 = Math.floor(10*Math.random());
+var z2 = Math.floor(10*Math.random());
+
+var randomnumber=Math.floor(Math.random()*100);
 if(isserver == false){
     print("client");
+    client.Login("localhost",2345,"Guest"+randomnumber.toString()," ","udp");
+    var scene = framework.Scene();
+    var myScene = scene.MainCameraScene();
+    main();
 }
 else{
     print("server");
+    var myScene = scene;
+    main();
+}
+
+function quit(){
+    framework.Exit();
 }
 
 function createEntity(entityName, x, y, z){
     var pos_x = x;
     var pos_y = y;
     var pos_z = z;
-    var entityId = scene.NextFreeId();
+    var entityId = myScene.NextFreeId();
     if(outputEnabled){
         print("ACTION: Creating a box(id: " + entityId +") at (x,y,z): " + pos_x + ", " + pos_y + ", " + pos_z);
     }
-    var entity = scene.CreateEntity(entityId, ["EC_Placeable", "EC_Mesh"]);
+    var entity = myScene.CreateEntity(entityId, ["EC_Placeable", "EC_Mesh"]);
     entity.SetTemporary(true);
     entity.SetName(entityName);
     //entity.mesh.SetMeshRef("~/test/1test/box.mesh");
@@ -32,11 +50,11 @@ function createEntity(entityName, x, y, z){
     transform.pos.z = pos_z;
     placeable.transform = transform;
     
-    scene.EmitEntityCreated(entity);
+    //scene.EmitEntityCreated(entity);
 }
 
 function checkEntityLocation(entityName, x, y, z){
-    var entity = scene.GetEntityByName(entityName);
+    var entity = myScene.GetEntityByName(entityName);
     if(entity != null){
         var xbool = false;
         var ybool = false;
@@ -70,7 +88,7 @@ function checkEntityLocation(entityName, x, y, z){
     }
 }
 function moveEntity(ent, x, y ,z){
-    var entity = scene.GetEntityByName(ent);
+    var entity = myScene.GetEntityByName(ent);
     if(entity != null){
         if(outputEnabled){
             print("ACTION: Moving box(id: " + entity.id + ") to (x,y,z): " + x + ", " + y + ", " + z);
@@ -87,13 +105,13 @@ function moveEntity(ent, x, y ,z){
     } 
 }
 function removeEntity(ent){
-    var entity = scene.GetEntityByName(ent);
+    var entity = myScene.GetEntityByName(ent);
     if (entity != null) {
         if(outputEnabled){
             print("ACTION: Removing entity");
         }
         var entId = entity.id;
-        scene.RemoveEntity(entId);
+        myScene.RemoveEntity(entId);
     }
     else{
         print("No entity found");
@@ -101,7 +119,7 @@ function removeEntity(ent){
 }
 function isAlive(ent, expected){
     var status = false;
-    var entity = scene.GetEntityByName(ent);
+    var entity = myScene.GetEntityByName(ent);
     if (entity == null) {
         status = false;
     }
@@ -168,13 +186,6 @@ var x2 = 0;
 var y2 = 10;
 var z2 = 0;
 */
-var x1 = Math.floor(10*Math.random());
-var y1 = Math.floor(10*Math.random());
-var z1 = Math.floor(10*Math.random());
-
-var x2 = Math.floor(10*Math.random());
-var y2 = Math.floor(10*Math.random());
-var z2 = Math.floor(10*Math.random());
 
 
 function main(){
@@ -198,5 +209,5 @@ function main(){
     quit();
 }
 
-frame.DelayedExecute(1).Triggered.connect(this, main);
+//frame.DelayedExecute(1).Triggered.connect(this, main);
 
