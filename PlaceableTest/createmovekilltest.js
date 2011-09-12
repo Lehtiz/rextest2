@@ -15,6 +15,7 @@ if(isserver == false){
     client.Login("localhost",2345,"Guest"+randomnumber.toString()," ","udp");
     var scene = framework.Scene();
     var myScene = scene.MainCameraScene();
+
     main();
 }
 else{
@@ -83,7 +84,7 @@ function checkEntityLocation(entityName, x, y, z){
         }
     }
     else{
-        print("no entity found")
+        print("no entity found");
     }
 }
 
@@ -101,7 +102,7 @@ function moveEntity(ent, x, y ,z){
         placeable.transform = transform;
     }
     else{
-        print("no entity found")
+        print("no entity found");
     } 
 }
 

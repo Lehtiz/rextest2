@@ -23,4 +23,4 @@ function Quit(){
 }
 
 frame.DelayedExecute(1).Triggered.connect(this,AutoConnect);
-frame.DelayedExecute(10).Triggered.connect(this, Quit);
+//frame.DelayedExecute(10).Triggered.connect(this, Quit);
