@@ -31,7 +31,7 @@ function goserver(){
 }
 function goviewer(){
     print("viewer");
-    engine.IncludeFile("/home/mikko/test/1test/testapp.js")
+    engine.IncludeFile("/home/mikko/src/rextest2/PlaceableTest/createmovekilltest.js")
     //print(scene.GetSceneRaw());
     //viewer();
     //var avatarEntity = scene.CreateEntityRaw(scene.NextFreeId())
