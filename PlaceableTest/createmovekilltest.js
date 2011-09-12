@@ -1,15 +1,30 @@
+useRandom = true;
+
 var isserver = server.IsRunning();
 var outputEnabled = true;
 var entityName = "box";
 
-var x1 = Math.floor(10*Math.random());
-var y1 = Math.floor(10*Math.random());
-var z1 = Math.floor(10*Math.random());
+if(useRandom == true){
+    var x1 = Math.floor(10*Math.random());
+    var y1 = Math.floor(10*Math.random());
+    var z1 = Math.floor(10*Math.random());
 
-var x2 = Math.floor(10*Math.random());
-var y2 = Math.floor(10*Math.random());
-var z2 = Math.floor(10*Math.random());
+    var x2 = Math.floor(10*Math.random());
+    var y2 = Math.floor(10*Math.random());
+    var z2 = Math.floor(10*Math.random());
+}
+else{
+    //use integers, doubles seem to cause differences in client
+    //initial location
+    var x1 = 0;
+    var y1 = 6;
+    var z1 = 0;
 
+    //move to
+    var x2 = 0;
+    var y2 = 10;
+    var z2 = 0;
+}
 var randomnumber=Math.floor(Math.random()*100);
 if(isserver == false){
     print("client");
@@ -51,7 +66,7 @@ function createEntity(entityName, x, y, z){
     transform.pos.z = pos_z;
     placeable.transform = transform;
     
-    scene.EmitEntityCreated(entity);
+    //scene.EmitEntityCreated(entity);
 }
 
 function checkEntityLocation(entityName, x, y, z){
@@ -170,19 +185,6 @@ function evaluateResults(test1, test2, test3, test4){
     
     return testResult;
 }
-
-//use integers, doubles seem to cause differences in client
-/*
-//initial location
-var x1 = 0;
-var y1 = 6;
-var z1 = 0;
-
-//move to
-var x2 = 0;
-var y2 = 10;
-var z2 = 0;
-*/
 
 
 function main(){
