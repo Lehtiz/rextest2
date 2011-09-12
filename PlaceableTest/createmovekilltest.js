@@ -204,7 +204,7 @@ function main(){
     }
     
     if(outputEnabled){
-        evaluateResults(test1, test2, test3, test4)
+        evaluateResults(test1, test2, test3, test4);
     }
     quit();
 }
