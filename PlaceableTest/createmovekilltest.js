@@ -29,7 +29,7 @@ else{
 var randomnumber=Math.floor(Math.random()*100);
 if(isserver == false){
     print("client");
-    client.Login("localhost",2345,"Guest"+randomnumber.toString()," ","udp");
+    //client.Login("localhost",2345,"Guest"+randomnumber.toString()," ","udp");
     var scene = framework.Scene();
     var myScene = scene.MainCameraScene();
     main();
@@ -55,7 +55,6 @@ function createEntity(entityName, x, y, z){
     var entity = myScene.CreateEntity(entityId, ["EC_Placeable", "EC_Mesh"]);
     entity.SetTemporary(true);
     entity.SetName(entityName);
-    //entity.mesh.SetMeshRef("~/test/1test/box.mesh");
     entity.mesh.SetMeshRef("local://box.mesh");
 
     // Set starting position for the entity
@@ -117,7 +116,7 @@ function moveEntity(ent, x, y ,z){
         placeable.transform = transform;
     }
     else{
-        print("no entity found");
+        print("No entity found");
     } 
 }
 
@@ -153,7 +152,6 @@ function isAlive(ent, expected){
     if(outputEnabled){
         print("Entity is alive: " + status);
     }
-    
     return boolmatch;
 }
 
@@ -171,18 +169,10 @@ function evaluateResults(test1, test2, test3, test4){
     if(!test4){
         print("FAIL: Entity is still alive");
     }
-    
     if(test1 && test2 && test3 && test4){
         testResult = true;
         print("All test phases completed succesfully");
     }
-    /*
-    print(test1);
-    print(test2);
-    print(test3);
-    print(test4);
-    */
-    
     return testResult;
 }
 
