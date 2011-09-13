@@ -36,7 +36,7 @@ def runTundra(param):
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-m", "--mode", dest="param")
+    parser.add_option("-p", "--parameters", dest="param")
     (options, args) = parser.parse_args()
     if options.param:
         param = options.param
