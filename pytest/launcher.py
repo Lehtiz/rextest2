@@ -83,9 +83,6 @@ def summary(runlist, numberOfTests, exitstatus):
 	if not exitstatus[i] == None:
             print "--" + runlist[i]
 
-
-#AUTOREPORT IN LAUNCHER(ALL LOGS IN ONE ARCHIVE)? testlist[i][:-3] strip suffix?
-
 if __name__ == "__main__":
 
     parser = OptionParser()
