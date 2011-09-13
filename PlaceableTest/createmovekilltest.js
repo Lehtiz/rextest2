@@ -25,13 +25,13 @@ else{
     var y2 = 10;
     var z2 = 0;
 }
+
 var randomnumber=Math.floor(Math.random()*100);
 if(isserver == false){
     print("client");
     client.Login("localhost",2345,"Guest"+randomnumber.toString()," ","udp");
     var scene = framework.Scene();
     var myScene = scene.MainCameraScene();
-
     main();
 }
 else{
@@ -160,16 +160,16 @@ function isAlive(ent, expected){
 function evaluateResults(test1, test2, test3, test4){
     testResult = false;
     if(!test1){
-        print("Entity is not alive");
+        print("FAIL: Entity is not alive");
     }
     if(!test2){
-        print("coordinate mismatch");
+        print("FAIL: Coordinate mismatch");
     }
     if(!test3){
-        print("coordinate mismatch");
+        print("FAIL: Coordinate mismatch");
     }
     if(!test4){
-        print("Entity is still alive");
+        print("FAIL: Entity is still alive");
     }
     
     if(test1 && test2 && test3 && test4){
@@ -185,7 +185,6 @@ function evaluateResults(test1, test2, test3, test4){
     
     return testResult;
 }
-
 
 function main(){
     if(outputEnabled){
@@ -207,3 +206,36 @@ function main(){
     quit();
 }
 
+//######################### SLOWTEST
+function create(){
+    createEntity(entityName, x1, y1, z1);
+}
+function test1(){
+    isAlive(entityName, true);
+}
+function test2(){
+    checkEntityLocation(entityName, x1, y1, z1);
+}
+function move(){
+    moveEntity(entityName, x2, y2, z2);
+}
+function test3(){
+    checkEntityLocation(entityName, x2, y2, z2);
+}
+function remove(){
+    removeEntity(entityName);
+}
+function test4(){
+    isAlive(entityName, false);
+}
+
+function main1(){
+    frame.DelayedExecute(1).Triggered.connect(this,create);
+    frame.DelayedExecute(3).Triggered.connect(this,test1);
+    frame.DelayedExecute(6).Triggered.connect(this,test2);
+    frame.DelayedExecute(9).Triggered.connect(this,move);
+    frame.DelayedExecute(12).Triggered.connect(this,test3);
+    frame.DelayedExecute(15).Triggered.connect(this,remove);
+    frame.DelayedExecute(18).Triggered.connect(this,test4);
+}
+//#########################
