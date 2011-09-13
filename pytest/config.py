@@ -1,5 +1,5 @@
 #!/usr/local/bin/python
-
+import getpass
 # configure realxtend /bin
 # e.g /home/<user>/reaxtend/bin/
-rexbinDir = "/home/heikki/src/realxtend/naali/bin/"
+rexbinDir = "/home/" + getpass.getuser() + "/src/realxtend/naali/bin/"
