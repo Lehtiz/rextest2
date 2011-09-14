@@ -20,21 +20,18 @@ eoftimeout = 9999 #must be long enough for each test to complete
 suffix = (".py", ".js")
 
 def main():
-
     setup()
     runTests(runlist, paramlist, numberOfTests)
     summary(runlist, numberOfTests, exitstatus)
     zipAll()
 
 def setup():
-
     global numberOfTests
-
     # list of tests, add new ones here files with the suffixes configured above are tested if they exist
     # and checked for optional parameters
     testlist.append("js-viewer-server-test.py -f " + config.rexbinDir + "/scenes/Avatar/avatar.txml")
     testlist.append("avatar-test.py -r 1 -c 1 -j local")
-    testlist.append("launchtundra.py -p '--server --protocol udp --file ./../../../rextest2/PlaceableTest/placeabletest.txml'")
+    testlist.append("launchtundra.py -p '--server --headless --protocol udp --file ./../../../rextest2/PlaceableTest/placeabletest.txml'")
 
     #for-loop to check if all testscript files exist
     for i in range(0,len(testlist)):
@@ -59,16 +56,16 @@ def runTests(runlist, paramlist, numberOfTests):
             command = "python " + runlist[i]
         else:
             command = "python " + runlist[i] + str(paramlist[i])
-	child = pexpect.spawn(command)
-	child.logfile=sys.stdout
-	i = child.expect(['password for', pexpect.EOF], timeout=eoftimeout)
-	if i == 0: #password prompt found
-	    time.sleep(1)
-	    child.sendline(pw)
-	child.expect(pexpect.EOF, timeout=eoftimeout)
-	child.isalive()
-	exitstatus.append(child.exitstatus)
-	child.close()
+        child = pexpect.spawn(command)
+        child.logfile=sys.stdout
+        i = child.expect(['password for', pexpect.EOF], timeout=eoftimeout)
+        if i == 0: #password prompt found
+            time.sleep(1)
+            child.sendline(pw)
+        child.expect(pexpect.EOF, timeout=eoftimeout)
+        child.isalive()
+        exitstatus.append(child.exitstatus)
+        child.close()
 
 def summary(runlist, numberOfTests, exitstatus):
     print "The following tests were in the run-queue:"
@@ -80,16 +77,14 @@ def summary(runlist, numberOfTests, exitstatus):
             print "--" + runlist[i]
 
 def zipAll():
-
     global timeStamp
     global zipName
-
     timeStamp = time.strftime("%Y-%m-%dT%H:%M:%S%Z", time.localtime())
     zipName = "testrun_" + timeStamp + ".zip"
     archives = glob.glob("*.zip")
     if len(archives) > 1:
         for i in range(0, len(archives)):
-            z = zipfile.ZipFile(zipName, 'a',zipfile.ZIP_DEFLATED)
+            z = zipfile.ZipFile(zipName, 'a')
             z.write(archives[i])
             z.close()
 
@@ -102,7 +97,6 @@ if __name__ == "__main__":
     (options, args) = parser.parse_args()
     if options.pw:
         pw = options.pw
-
     main()
 
 
