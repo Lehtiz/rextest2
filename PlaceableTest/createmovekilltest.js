@@ -169,7 +169,7 @@ function evaluateResults(test1, test2, test3, test4){
     if(!test4){
         print("FAIL: Entity is still alive");
     }
-    if(test1 && test2 && test3 && test4){
+    else if(test1 && test2 && test3 && test4){
         testResult = true;
         print("All test phases completed succesfully");
     }
@@ -178,7 +178,7 @@ function evaluateResults(test1, test2, test3, test4){
 
 function main(){
     if(outputEnabled){
-        print("##########################")
+        print("##########################");
     }
     createEntity(entityName, x1, y1, z1);
     test1 = isAlive(entityName, true);
@@ -188,10 +188,10 @@ function main(){
     removeEntity(entityName);
     test4 = isAlive(entityName, false);
     if(outputEnabled){
-        print("##########################")
+        print("##########################");
     }
     if(outputEnabled){
-        evaluateResults(test1, test2, test3, test4);
+        print("Result: " + evaluateResults(test1, test2, test3, test4));
     }
     quit();
 }
