@@ -151,7 +151,7 @@ def posixJsViewer(viewerScript):
         e.write(viewercode)
 
 def posixTxmlServer(serverScript):
-    s = "./Tundra --server --headless --file " + testfile + " --run " + serverScript + " 2>&1 | tee " + serverOutput
+    s = "./Tundra --server --protocol tcp --headless --file " + testfile + " --run " + serverScript + " 2>&1 | tee " + serverOutput
     servercode = posixRun(s)
     with open(exitfileServer, 'w') as e:
         e.write(str(servercode))
@@ -174,7 +174,7 @@ def posixRun(str):
 
 ### NT START
 def ntJsServer(serverScript):
-    s = "server.exe --headless --run " + serverScript + " > " + serverOutput + "2>&1"
+    s = "Tundra.exe --headless --run " + serverScript + " > " + serverOutput + "2>&1"
     #get exitcode and run
     servercode = ntRun(s)
     #write exitcode to file
@@ -182,20 +182,20 @@ def ntJsServer(serverScript):
         e.write(servercode)
 
 def ntJsViewer(viewerScript):
-    v = "viewer.exe --headless --run " + viewerScript + " > " + viewerOutput + "2>&1"
+    v = "Tundra.exe --headless --run " + viewerScript + " > " + viewerOutput + "2>&1"
     viewercode = ntRun(v)
     with open(exitfileViewer, 'w') as e:
         e.write(viewercode)
 
 def ntTxmlServer(serverScript):
-    s = "server.exe --headless --file " + testfile + " --run " + serverScript + " > " + serverOutput + "2>&1"
+    s = "Tundra.exe --headless --protocol tcp --file " + testfile + " --run " + serverScript + " > " + serverOutput + "2>&1"
     servercode = ntRun(s)
     with open(exitfileServer, 'w') as e:
         e.write(servercode)
 
 def ntTxmlViewer(viewerScript):
 #    v = "viewer.exe --headless --storage " + os.path.dirname(testfile) + "/ --run " + viewerScript + " > " + viewerOutput + "2>&1 | ECHO %ERRORLEVEL%" > asd.txt
-    v = "viewer.exe --headless --storage " + os.path.dirname(testfile) + "/ --run " + viewerScript + " > " + viewerOutput + "2>&1"
+    v = "Tundra.exe --headless --storage " + os.path.dirname(testfile) + "/ --run " + viewerScript + " > " + viewerOutput + "2>&1"
     viewercode = ntRun(v)
     with open(exitfileViewer, 'w') as e:
         e.write(viewercode)

@@ -24,4 +24,10 @@ parameters:
 usage example: 
 python avatar-test.py -r 1 -c 1 -j chiru
 
+launchtundra:
+parameters:
+ -p, --parameters   run configuration parameters for tundra2
+usage example:
+python launchtundra.py -p '--server --protocol udp --file scenes/scenex/x.txml'
+
 

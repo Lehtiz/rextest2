@@ -33,8 +33,9 @@ def setup():
     # list of tests, add new ones here files with the suffixes configured above are tested if they exist
     # and checked for optional parameters
     testlist.append("js-viewer-server-test.py -f " + config.rexbinDir + "/scenes/Avatar/avatar.txml")
-    testlist.append("avatar-test.py -r 1 -c 1 -j local")
-    testlist.append("launchtundra.py -p '--server --protocol udp --file ./../../../rextest2/PlaceableTest/placeabletest.txml'")
+    #testlist.append("avatar-test.py -r 1 -c 1 -j local")
+    #testlist.append("launchtundra.py -p '--server --protocol udp --file ./../../../rextest2/PlaceableTest/placeabletest.txml'")
+    #testlist.append("launchtundra.py -p '--config viewer.xml --run ./../../../rextest2/PlaceableTest/viewerscript.js'")
 
     #for-loop to check if all testscript files exist
     for i in range(0,len(testlist)):
@@ -87,7 +88,7 @@ def summary(runlist, numberOfTests, exitstatus):
 	if not exitstatus[i] == None:
             print "--" + runlist[i]
 
-def zipall():
+def zipAll():
 
     global timeStamp
     global zipName
@@ -95,13 +96,14 @@ def zipall():
     timeStamp = time.strftime("%Y-%m-%dT%H:%M:%S%Z", time.localtime())
     zipName = "testrun_" + timeStamp + ".zip"
     archives = glob.glob("*.zip")
-    for i in range(0, len(archives)):
-        z = zipfile.ZipFile(zipName, 'a',zipfile.ZIP_DEFLATED)
-        z.write(archives[i])
-        z.close()
+    if len(archives) > 1:
+        for i in range(0, len(archives)):
+            z = zipfile.ZipFile(zipName, 'a',zipfile.ZIP_DEFLATED)
+            z.write(archives[i])
+            z.close()
 
-    for i in range(0, len(archives)):
-        os.remove(archives[i])
+        for i in range(0, len(archives)):
+            os.remove(archives[i])
 
 if __name__ == "__main__":
 
