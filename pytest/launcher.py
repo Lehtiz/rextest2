@@ -4,6 +4,8 @@
 import os
 import sys
 import time
+import zipfile
+import glob
 import pexpect
 from optparse import OptionParser
 import config
@@ -22,6 +24,7 @@ def main():
     setup()
     runTests(runlist, paramlist, numberOfTests)
     summary(runlist, numberOfTests, exitstatus)
+    zipAll()
 
 def setup():
 
@@ -31,6 +34,7 @@ def setup():
     # and checked for optional parameters
     testlist.append("js-viewer-server-test.py -f " + config.rexbinDir + "/scenes/Avatar/avatar.txml")
     testlist.append("avatar-test.py -r 1 -c 1 -j local")
+    testlist.append("launchtundra.py -p '--server --protocol udp --file ./../../../rextest2/PlaceableTest/placeabletest.txml'")
 
     #for-loop to check if all testscript files exist
     for i in range(0,len(testlist)):
@@ -76,12 +80,28 @@ def summary(runlist, numberOfTests, exitstatus):
         
         print "--" + runlist[i]
 
-    print "The following tests were completed succesfully:"
+    print "The following tests were run succesfully:"
 
     for i in range(0,numberOfTests):
         
 	if not exitstatus[i] == None:
             print "--" + runlist[i]
+
+def zipall():
+
+    global timeStamp
+    global zipName
+
+    timeStamp = time.strftime("%Y-%m-%dT%H:%M:%S%Z", time.localtime())
+    zipName = "testrun_" + timeStamp + ".zip"
+    archives = glob.glob("*.zip")
+    for i in range(0, len(archives)):
+        z = zipfile.ZipFile(zipName, 'a',zipfile.ZIP_DEFLATED)
+        z.write(archives[i])
+        z.close()
+
+    for i in range(0, len(archives)):
+        os.remove(archives[i])
 
 if __name__ == "__main__":
 

@@ -35,7 +35,10 @@ def makePreparations():
         os.makedirs(logsDir)
 
 def runTundra(param):
-    t = "./Tundra " + param + " 2>&1 | tee " + serverOutput
+    if ("--server" in param):
+        t = "./Tundra " + param + " 2>&1 | tee " + serverOutput
+    else:
+        t = "./Tundra " + param + " 2>&1 | tee " + viewerOutput
     subprocess.call(t, shell=True)
     
 
