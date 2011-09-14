@@ -59,16 +59,16 @@ def runTests(runlist, paramlist, numberOfTests):
             command = "python " + runlist[i]
         else:
             command = "python " + runlist[i] + str(paramlist[i])
-	child = pexpect.spawn(command)
-	child.logfile=sys.stdout
-	i = child.expect(['password for', pexpect.EOF], timeout=eoftimeout)
-	if i == 0: #password prompt found
-	    time.sleep(1)
-	    child.sendline(pw)
-	child.expect(pexpect.EOF, timeout=eoftimeout)
-	child.isalive()
-	exitstatus.append(child.exitstatus)
-	child.close()
+	    child = pexpect.spawn(command)
+	    child.logfile=sys.stdout
+	    i = child.expect(['password for', pexpect.EOF], timeout=eoftimeout)
+	    if i == 0: #password prompt found
+	        time.sleep(1)
+	        child.sendline(pw)
+	    child.expect(pexpect.EOF, timeout=eoftimeout)
+	    child.isalive()
+	    exitstatus.append(child.exitstatus)
+	    child.close()
 
 def summary(runlist, numberOfTests, exitstatus):
     print "The following tests were in the run-queue:"
@@ -89,12 +89,12 @@ def zipAll():
     archives = glob.glob("*.zip")
     if len(archives) > 1:
         for i in range(0, len(archives)):
-            z = zipfile.ZipFile(zipName, 'a',zipfile.ZIP_DEFLATED)
-            z.write(archives[i])
-            z.close()
+            if (("testrun_" in archives[i]) == False):
+                z = zipfile.ZipFile(zipName, 'a',zipfile.ZIP_DEFLATED)
+                z.write(archives[i])
+                z.close()
+                os.remove(archives[i])
 
-        for i in range(0, len(archives)):
-            os.remove(archives[i])
 
 if __name__ == "__main__":
     parser = OptionParser()
