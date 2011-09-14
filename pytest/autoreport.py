@@ -187,9 +187,9 @@ def operation():
         #remove files
         for f in outputFile:
             os.remove(f)
-            #remove dir
-            #os.removedirs(logDir)
-            shutil.rmtree(logDir, ignore_errors=True)
+        #remove dir
+        #os.removedirs(logDir)
+        shutil.rmtree(logDir, ignore_errors=True)
     else:
         #relocate already archieved files
         if configMoveOld:
