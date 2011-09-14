@@ -5,6 +5,9 @@
 # report files
 *.log
 *.html
+*.pcap
+wireshark_temp
+wireshark_temp/*
 logs
 logs/*
 old
