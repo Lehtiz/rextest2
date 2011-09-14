@@ -20,21 +20,18 @@ eoftimeout = 9999 #must be long enough for each test to complete
 suffix = (".py", ".js")
 
 def main():
-
     setup()
     runTests(runlist, paramlist, numberOfTests)
     summary(runlist, numberOfTests, exitstatus)
     zipAll()
 
 def setup():
-
     global numberOfTests
-
     # list of tests, add new ones here files with the suffixes configured above are tested if they exist
     # and checked for optional parameters
     testlist.append("js-viewer-server-test.py -f " + config.rexbinDir + "/scenes/Avatar/avatar.txml")
     testlist.append("avatar-test.py -r 1 -c 1 -j local")
-    testlist.append("launchtundra.py -p '--server --protocol udp --file ./../../../rextest2/PlaceableTest/placeabletest.txml'")
+    testlist.append("launchtundra.py -p '--server --headless --protocol udp --file ./../../../rextest2/PlaceableTest/placeabletest.txml'")
 
     #for-loop to check if all testscript files exist
     for i in range(0,len(testlist)):
@@ -80,10 +77,8 @@ def summary(runlist, numberOfTests, exitstatus):
             print "--" + runlist[i]
 
 def zipAll():
-
     global timeStamp
     global zipName
-
     timeStamp = time.strftime("%Y-%m-%dT%H:%M:%S%Z", time.localtime())
     zipName = "testrun_" + timeStamp + ".zip"
     archives = glob.glob("*.zip")
@@ -95,14 +90,12 @@ def zipAll():
                 z.close()
                 os.remove(archives[i])
 
-
 if __name__ == "__main__":
     parser = OptionParser()
     parser.add_option("-p", "--password", dest="pw")
     (options, args) = parser.parse_args()
     if options.pw:
         pw = options.pw
-
     main()
 
 
