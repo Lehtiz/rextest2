@@ -56,16 +56,16 @@ def runTests(runlist, paramlist, numberOfTests):
             command = "python " + runlist[i]
         else:
             command = "python " + runlist[i] + str(paramlist[i])
-	    child = pexpect.spawn(command)
-	    child.logfile=sys.stdout
-	    i = child.expect(['password for', pexpect.EOF], timeout=eoftimeout)
-	    if i == 0: #password prompt found
-	        time.sleep(1)
-	        child.sendline(pw)
-	    child.expect(pexpect.EOF, timeout=eoftimeout)
-	    child.isalive()
-	    exitstatus.append(child.exitstatus)
-	    child.close()
+        child = pexpect.spawn(command)
+        child.logfile=sys.stdout
+        i = child.expect(['password for', pexpect.EOF], timeout=eoftimeout)
+        if i == 0: #password prompt found
+            time.sleep(1)
+            child.sendline(pw)
+        child.expect(pexpect.EOF, timeout=eoftimeout)
+        child.isalive()
+        exitstatus.append(child.exitstatus)
+        child.close()
 
 def summary(runlist, numberOfTests, exitstatus):
     print "The following tests were in the run-queue:"
