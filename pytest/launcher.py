@@ -33,9 +33,14 @@ def setup():
     # list of tests, add new ones here files with the suffixes configured above are tested if they exist
     # and checked for optional parameters
     testlist.append("js-viewer-server-test.py -f " + config.rexbinDir + "/scenes/Avatar/avatar.txml")
+<<<<<<< HEAD
     #testlist.append("avatar-test.py -r 1 -c 1 -j local")
     #testlist.append("launchtundra.py -p '--server --protocol udp --file ./../../../rextest2/PlaceableTest/placeabletest.txml'")
     #testlist.append("launchtundra.py -p '--config viewer.xml --run ./../../../rextest2/PlaceableTest/viewerscript.js'")
+=======
+    testlist.append("avatar-test.py -r 1 -c 1 -j local")
+    testlist.append("launchtundra.py -p '--server --protocol udp --file ./../../../rextest2/PlaceableTest/placeabletest.txml'")
+>>>>>>> e196b40950fec755ecc03ed9371f00c2f760fa7e
 
     #for-loop to check if all testscript files exist
     for i in range(0,len(testlist)):
@@ -52,11 +57,9 @@ def setup():
                     paramlist.insert(i, list[1])
                 else:
                     paramlist.append(None)
-
     numberOfTests = len(runlist)
 
 def runTests(runlist, paramlist, numberOfTests):
-
     for i in range(0,numberOfTests):
         if  paramlist == None:
             command = "python " + runlist[i]
@@ -74,18 +77,18 @@ def runTests(runlist, paramlist, numberOfTests):
 	child.close()
 
 def summary(runlist, numberOfTests, exitstatus):
-
     print "The following tests were in the run-queue:"
-
-    for i in range(0,numberOfTests):
-        
+    for i in range(0,numberOfTests):    
         print "--" + runlist[i]
+<<<<<<< HEAD
 
     print "The following tests were run succesfully:"
 
+=======
+    print "The following tests were run succesfully:"
+>>>>>>> e196b40950fec755ecc03ed9371f00c2f760fa7e
     for i in range(0,numberOfTests):
-        
-	if not exitstatus[i] == None:
+        if not exitstatus[i] == None:
             print "--" + runlist[i]
 
 def zipAll():
@@ -106,7 +109,6 @@ def zipAll():
             os.remove(archives[i])
 
 if __name__ == "__main__":
-
     parser = OptionParser()
     parser.add_option("-p", "--password", dest="pw")
     (options, args) = parser.parse_args()

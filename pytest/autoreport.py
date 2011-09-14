@@ -111,8 +111,6 @@ def testSkeleton():
     outputFile = glob.glob(logDir + '/*') #everything in outputDir, script presumes test outputs everything to its own output folder, files can also be added to a list individually
     operation()
 
-
-
 def jsViewerServerTest():
     global testName
     global testComment
@@ -163,8 +161,7 @@ def launchTundra():
     testComment = "This test launches tundra2 with given parameters"
     logDir = "logs/launchtundra"
     errorPattern = [
-        'Error',
-        'fail'
+        'Result: false'
     ]
     logFile = glob.glob(logDir + '/*.out')
     #files included in the zip archive
@@ -184,19 +181,19 @@ def operation():
         createArchive()
         if configUploadFile:
             uploadFile()
-        if not configPreserveLogs:
-            #remove files
-            for f in outputFile:
-                os.remove(f)
-            #remove dir
-            #os.removedirs(logDir)
-            shutil.rmtree(logDir, ignore_errors=True)
-        else:
-            #relocate already archieved files
-            if configMoveOld:
-               moveOld()
         if configCreateGithubIssue:
-            createGithubIssue()
+            createGithubIssue()      
+    if not configPreserveLogs:
+        #remove files
+        for f in outputFile:
+            os.remove(f)
+        #remove dir
+        #os.removedirs(logDir)
+        shutil.rmtree(logDir, ignore_errors=True)
+    else:
+        #relocate already archieved files
+        if configMoveOld:
+            moveOld()
     if configCleanUp:
         cleanUp()
     print "Finished..."

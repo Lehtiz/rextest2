@@ -1,17 +1,11 @@
 var randomnumber=Math.floor(Math.random()*100)
 
-//console.ExecuteCommand("connect(chiru.cie.fi,2345,Pertti"+randomnumber.toString()+")" )
-function AutoConnect()
-{
+function AutoConnect(){
     var isserver = server.IsRunning() || server.IsAboutToStart();
     if(isserver==false){
         client.Login("localhost",2345,"Guest"+randomnumber.toString()," ","udp");
-	//client.Login("chiru.cie.fi",2345,"Guest"+randomnumber.toString()," ","tcp");
     }
 }
-
-
-
 frame.DelayedExecute(1).Triggered.connect(this,AutoConnect);
 
 function Quit()
@@ -26,14 +20,12 @@ frame.DelayedExecute(90).Triggered.connect(this, Quit);
 //var clientID=Math.floor(Math.random()*3)+1
 //var avatar = "Avatar" + randomnumb1.toString();
 
-function getAvatarID()	
-{
+function getAvatarID(){
 	var clientID = client.GetConnectionID();
 	var avatarx = "Avatar" + clientID.toString();
 	return avatarx;
 }
-function MoveForward() 
- {
+function MoveForward(){
 	var avatar = getAvatarID();
     var scene = framework.Scene();
 	print(scene); 
@@ -43,8 +35,7 @@ function MoveForward()
 	var myAvatar = omaScene.GetEntityByName(avatar);
     var moveAction = myAvatar.Exec(2, "Move", "forward");    
 }
-function MoveBack() 
- {
+function MoveBack(){
 	var avatar = getAvatarID();
     var scene = framework.Scene();
 	print(scene); 
@@ -54,8 +45,7 @@ function MoveBack()
 	var myAvatar = omaScene.GetEntityByName(avatar);
 	var moveAction = myAvatar.Exec(2, "Move", "back");
 }
-function StopForward() 
- {
+function StopForward(){
 	var avatar = getAvatarID();
     var scene = framework.Scene();
 	print(scene); 
@@ -63,10 +53,9 @@ function StopForward()
 	print(" stop forward");
 	var omaScene = scene.MainCameraScene();
 	var myAvatar = omaScene.GetEntityByName(avatar);
-        var moveAction = myAvatar.Exec(2, "Stop", "forward");      
+    var moveAction = myAvatar.Exec(2, "Stop", "forward");      
 }
-function StopBack() 
- {
+function StopBack(){
 	var avatar = getAvatarID();
     var scene = framework.Scene();
 	print(scene); 
@@ -74,10 +63,9 @@ function StopBack()
 	print(" stop back");
 	var omaScene = scene.MainCameraScene();
 	var myAvatar = omaScene.GetEntityByName(avatar);
-        var moveAction = myAvatar.Exec(2, "Stop", "back");      
+    var moveAction = myAvatar.Exec(2, "Stop", "back");      
 }
-function RotateRight() 
- {
+function RotateRight(){
 	var avatar = getAvatarID();
     var scene = framework.Scene();
 	print(scene); 
@@ -87,8 +75,7 @@ function RotateRight()
 	var myAvatar = omaScene.GetEntityByName(avatar);
 	var moveAction = myAvatar.Exec(2, "Rotate", "right");
 }
-function RotateLeft() 
- {
+function RotateLeft(){
 	var avatar = getAvatarID();
     var scene = framework.Scene();
 	print(scene); 
@@ -98,8 +85,7 @@ function RotateLeft()
 	var myAvatar = omaScene.GetEntityByName(avatar);
 	var moveAction = myAvatar.Exec(2, "Rotate", "left");
 }
-function RotateStopRight() 
- {
+function RotateStopRight(){
 	var avatar = getAvatarID();
     var scene = framework.Scene();
 	print(scene); 
@@ -109,8 +95,7 @@ function RotateStopRight()
 	var myAvatar = omaScene.GetEntityByName(avatar);
 	var moveAction = myAvatar.Exec(2, "StopRotate", "right");
 }
-function RotateStopLeft() 
- {
+function RotateStopLeft(){
 	var avatar = getAvatarID();
     var scene = framework.Scene();
 	print(scene); 
