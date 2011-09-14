@@ -6,6 +6,7 @@ import os.path
 import subprocess
 from optparse import OptionParser
 import config
+import autoreport
 
 # folder config
 scriptDir = os.path.abspath(os.getcwd())
@@ -16,6 +17,9 @@ logsDir = os.path.abspath(os.path.join(scriptDir, 'logs/launchtundra/'))
 # output files
 serverOutput = logsDir + "/s.out"
 viewerOutput = logsDir + "/v.out"
+# output result!!!
+
+testName = "launchtundra"
 
 param = ""
 
@@ -24,6 +28,7 @@ def main():
     os.chdir(rexbinDir)
     runTundra(param)
     os.chdir(scriptDir)
+    autoreport.autoreport(testName)
 
 def makePreparations():
     if not os.path.exists(logsDir):

@@ -56,6 +56,7 @@ includeMachineInfo = True
 TEST0 = "Example-skeleton"
 TEST1 = "js-viewer-server-test"
 TEST2 = "avatar-test"
+TEST3 = "launchtundra"
 # misc
 tempCount = "count.txt"
 tempErrors = "errors.txt"
@@ -110,6 +111,8 @@ def testSkeleton():
     outputFile = glob.glob(logDir + '/*') #everything in outputDir, script presumes test outputs everything to its own output folder, files can also be added to a list individually
     operation()
 
+
+
 def jsViewerServerTest():
     global testName
     global testComment
@@ -148,6 +151,26 @@ def avatarTest():
     outputFile = glob.glob(logDir + '/*/*') #everything in outputDir
     operation()
 
+def launchTundra():
+    global testName
+    global testComment
+    global errorPattern
+    global logDir
+    global logFile
+    global outputFile
+
+    testName = TEST3
+    testComment = "This test launches tundra2 with given parameters"
+    logDir = "logs/launchtundra"
+    errorPattern = [
+        'Error',
+        'fail'
+    ]
+    logFile = glob.glob(logDir + '/*.out')
+    #files included in the zip archive
+    outputFile = glob.glob(logDir + '/*') #everything in outputDir, script presumes test outputs everything to its own output folder, files can also be added to a list individually
+    operation()
+
 def operation():
     global html
 
@@ -183,6 +206,8 @@ def whichTestWasRun(option):
         jsViewerServerTest()
     elif option == TEST2:
         avatarTest()
+    elif option == TEST3:
+        launchTundra()
     else:
         print("Error: test config not found")
 
