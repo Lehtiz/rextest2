@@ -83,12 +83,17 @@ def zipAll():
     zipName = "testrun_" + timeStamp + ".zip"
     archives = glob.glob("*.zip")
     if len(archives) > 1:
-        for i in range(0, len(archives)):
-            if (("testrun_" in archives[i]) == False):
-                z = zipfile.ZipFile(zipName, 'a',zipfile.ZIP_DEFLATED)
-                z.write(archives[i])
-                z.close()
-                os.remove(archives[i])
+        print "Creating testrun zip...",
+        try:
+            for i in range(0, len(archives)):
+                if (("testrun_" in archives[i]) == False):
+                    z = zipfile.ZipFile(zipName, 'a',zipfile.ZIP_DEFLATED)
+                    z.write(archives[i])
+                    z.close()
+                    os.remove(archives[i])
+            print ("succesful")
+        except:
+            print ("failed")
 
 if __name__ == "__main__":
     parser = OptionParser()

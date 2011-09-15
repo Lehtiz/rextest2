@@ -35,12 +35,16 @@ def makePreparations():
         os.makedirs(logsDir)
 
 def runTundra(param):
-    if ("--server" in param):
-        t = "./Tundra " + param + " 2>&1 | tee " + serverOutput
-    else:
-        t = "./Tundra " + param + " 2>&1 | tee " + viewerOutput
-    subprocess.call(t, shell=True)
-    
+    #os.name options: 'posix', 'nt', 'os2', 'mac', 'ce' or 'riscos'
+    if os.name == 'posix' or os.name == 'mac':
+        if ("--server" in param):
+            t = "./Tundra " + param + " 2>&1 | tee " + serverOutput
+        else:
+            t = "./Tundra " + param + " 2>&1 | tee " + viewerOutput
+        subprocess.call(t, shell=True)
+
+    #elif os.name == 'nt':	#NOT IMPLEMENTED
+        #windowsStuff
 
 if __name__ == "__main__":
     parser = OptionParser()
