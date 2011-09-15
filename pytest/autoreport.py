@@ -292,7 +292,7 @@ def summaryOperations(htmlReportFile, option, *fileName):
     elif option == 'errors':
         htmlReportFile.write("<pre>" + errorOutput + "</pre><hr /><h3>Files:</h3><ul>")
     elif option == 'add':
-        htmlReportFile.write("<li>File: <a href=" + str(fileName) +">" + str(fileName)[2:-3] + "</a></li>") # [2:-3] strip list brackets ('xxx',) --> xxx
+        htmlReportFile.write("<li>File: <a href=" + str(fileName)[2:-3] +">" + str(fileName)[2:-3] + "</a></li>") # [2:-3] strip list brackets ('xxx',) --> xxx
     elif option == 'total':
         htmlReportFile.write("</ul><hr /><p>Total files: " + str(len(outputFile)) + "</p>")
     elif option == 'stop':
