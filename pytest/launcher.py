@@ -22,6 +22,7 @@ runlist = []
 paramlist = []
 exitstatus = []
 pw="hardcoded" #default password if -p is not used
+passwordSet=False
 eoftimeout = 9999 #must be long enough for each test to complete
 # suffixes to accept for testing
 suffix = (".py", ".js")
@@ -45,7 +46,13 @@ def setup():
     testlist.append("js-viewer-server-test.py -f " + config.rexbinDir + "scenes/Avatar/avatar.txml")
     testlist.append("launchtundra.py -p '--server --headless --protocol udp --file ./../../../rextest2/PlaceableTest/placeabletest.txml'")
     #testlist.append("launchtundra.py -p '--server --headless --protocol udp --file " + config.rexbinDir + "scenes/PlaceableTest/placeabletest.txml'")
-    testlist.append("avatar-test.py -r 1 -c 1 -j local")
+    
+    #scripts that need to be run as super-user, 
+    # if password is not set on launch these tests will not be added to the run queue
+    if passwordSet:
+        testlist.append("avatar-test.py -r 1 -c 1 -j local")
+    else:
+        print('No password given: sudo tests omitted from queue, use "-p password123" parameter')
     
     #for-loop to check if all testscript files exist
     for i in range(0,len(testlist)):
@@ -131,6 +138,7 @@ if __name__ == "__main__":
     (options, args) = parser.parse_args()
     if options.pw:
         pw = options.pw
+        passwordSet=True
     main()
 
 
