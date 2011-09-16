@@ -23,6 +23,7 @@ paramlist = []
 exitstatus = []
 pw="hardcoded" #default password if -p is not used
 eoftimeout = 9999 #must be long enough for each test to complete
+# suffixes to accept for testing
 suffix = (".py", ".js")
 
 # make a single archive file, if set to False file uploading is also disabled, 
@@ -39,7 +40,7 @@ def main():
 
 def setup():
     global numberOfTests
-    # list of tests, add new ones here files with the suffixes configured above are tested if they exist
+    # list of tests, files with the suffixes configured above are tested if they exist
     # and checked for optional parameters
     testlist.append("js-viewer-server-test.py -f " + config.rexbinDir + "scenes/Avatar/avatar.txml")
     testlist.append("launchtundra.py -p '--server --headless --protocol udp --file ./../../../rextest2/PlaceableTest/placeabletest.txml'")
