@@ -103,20 +103,19 @@ def zipAll():
     timeStamp = time.strftime("%Y-%m-%dT%H:%M:%S%Z", time.localtime())
     zipName = "testrun_" + timeStamp + ".zip"
     archives = glob.glob("*.zip")
-    if len(archives) > 1:
-        print "Creating testrun zip...",
-        try:
-            for i in range(0, len(archives)):
-                if (("testrun_" in archives[i]) == False):
-                    z = zipfile.ZipFile(zipName, 'a',zipfile.ZIP_DEFLATED)
-                    z.write(archives[i])
-                    z.close()
-                    os.remove(archives[i])
-            print ("succesful")
-            if(uploadfile==True):
-                uploadFile(zipName)
-        except:
-            print ("failed")
+    print "Creating testrun zip...",
+    try:
+        for i in range(0, len(archives)):
+            if (("testrun_" in archives[i]) == False):
+                z = zipfile.ZipFile(zipName, 'a',zipfile.ZIP_DEFLATED)
+                z.write(archives[i])
+                z.close()
+                os.remove(archives[i])
+        print ("succesful")
+        if(uploadfile==True):
+            uploadFile(zipName)
+    except:
+        print ("failed")
             
 def uploadFile(zipName):
     # ftplib
