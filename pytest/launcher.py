@@ -53,7 +53,7 @@ def setup():
         testlist.append("avatar-test.py -r 1 -c 1 -j local")
     else:
         print('No password given: sudo tests omitted from queue, use "-p password123" parameter')
-    
+
     #for-loop to check if all testscript files exist
     for i in range(0,len(testlist)):
         for suff in range(0,len(suffix)):

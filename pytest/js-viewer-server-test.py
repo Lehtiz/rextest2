@@ -24,11 +24,10 @@ import config
 testName="js-viewer-server-test"
 
 #folder config
-scriptDir = os.path.abspath(os.getcwd())
+scriptDir = config.scriptDir
 rexbinDir = config.rexbinDir
-#rexbinDir = os.path.abspath(os.path.join(scriptDir, '../../bin'))
-testDir = os.path.abspath(os.path.join(scriptDir, '..'))
-logsDir = os.path.abspath(os.path.join(scriptDir, 'logs/jvst-output/'))
+testDir = config.testDir
+logsDir = config.jvstLogsDir
 
 SCRIPTSUFFIX = ".js"
 

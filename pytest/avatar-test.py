@@ -24,13 +24,12 @@ numberOfClients = 2
 testName = "avatar-test"
 
 #folder config
-scriptDir = os.path.abspath(os.getcwd())
+scriptDir = config.scriptDir
 rexbinDir = config.rexbinDir
-#rexbinDir = os.path.abspath(os.path.join(scriptDir, '../../bin'))
-testDir = os.path.abspath(os.path.join(scriptDir, '..'))
-logsDir = os.path.abspath(os.path.join(scriptDir, 'logs/avatar-output'))
-wiresTempDir = os.path.abspath(os.path.join(scriptDir, 'wireshark_temp'))
-tsharkLocation = "c:/Program Files/Wireshark/"
+testDir = config.testDir
+logsDir = config.avatarLogsDir
+wiresTempDir = config.wiresTempDir
+tsharkLocation = config.tsharkLocation
 
 #test chiru or local server (default if no parameter is given)
 #js = scriptDir + "/" + "autoConnect.js"
