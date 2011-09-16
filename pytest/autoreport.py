@@ -17,37 +17,26 @@ import shutil
 import zipfile
 import os.path
 import platform
+import config
 
 
 # FTP-CONFIG for fileUpload
-FTPHOST="xxx"
-FTPUSER="xxx"
-FTPPASSWD="xxx"
+FTPHOST=config.autoreportFTPHOST
+FTPUSER=config.autoreportFTPUSER
+FTPPASSWD=config.autoreportFTPPASSWD
 
 # GITHUB-CONFIG for createGithubIssue
 GITHUBLOGIN="rex-test-autoreport" # user
 GITHUBAPITOKEN="4b05500b0593b50f4c89dacb6d11449c" #users api token
 GITHUBREPO="rex-test-autoreport/issueReportTest" # e.g. "projectowner/project"
 
-#
 # OPTIONS
-#
-# Option for preserving test output files after archive has been created
-configPreserveLogs = False
-# Option for moving test output files to an old archives folder (debug-standalone-run)
-# if preserveLogs is set to false option is ignored
-configMoveOld = False
-# Option for cleaning up (removing temp files) the the folder after running the script
-# default true
-configCleanUp = True
-# Option for uploading report .zip to host
-# default false (needs config)
-configUploadFile = False
-# Option for making github issue report
-# default false (needs config)
-configCreateGithubIssue = False
-#Option for including test machine info to the report file
-includeMachineInfo = True
+configPreserveLogs = config.preserveLogs
+configMoveOld = config.moveOld
+configCleanUp = config.cleanUp
+configUploadFile = config.uploadFile
+configCreateGithubIssue = config.createGithubIssue
+includeMachineInfo = config.includeMachineInfo
 
 
 

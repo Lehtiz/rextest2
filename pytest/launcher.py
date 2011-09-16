@@ -12,9 +12,9 @@ from optparse import OptionParser
 import config
 
 # FTP-CONFIG for fileUpload
-FTPHOST="xxx"
-FTPUSER="xxx"
-FTPPASSWD="xxx"
+FTPHOST=config.launcherFTPHOST
+FTPUSER=config.launcherFTPUSER
+FTPPASSWD=config.launcherFTPPASSWD
 
 #config
 testlist = []
@@ -29,8 +29,8 @@ suffix = (".py", ".js")
 
 # make a single archive file, if set to False file uploading is also disabled, 
 # single archive uploads can be enabled in autoreport.py
-archiveResults = True
-uploadfile=False
+archiveResults = config.launcherArchiveResults
+uploadFile = config.launcherUploadFile
 
 def main():
     setup()
@@ -44,7 +44,6 @@ def setup():
     # list of tests, files with the suffixes configured above are tested if they exist
     # and checked for optional parameters
     testlist.append("js-viewer-server-test.py -f " + config.rexbinDir + "scenes/Avatar/avatar.txml")
-    #temp testlist.append("launchtundra.py -p '--server --headless --protocol udp --file ./../../../rextest2/PlaceableTest/placeabletest.txml'")
     testlist.append("launchtundra.py -p '--server --headless --protocol udp --file " + config.rexbinDir + "scenes/PlaceableTest/placeabletest.txml'")
     
     #scripts that need to be run as super-user, 
@@ -112,12 +111,12 @@ def zipAll():
                 z.close()
                 os.remove(archives[i])
         print ("succesful")
-        if(uploadfile==True):
-            uploadFile(zipName)
+        if(uploadFile==True):
+            fileUpload(zipName)
     except:
         print ("failed")
             
-def uploadFile(zipName):
+def fileUpload(zipName):
     # ftplib
     #comma to prevent newline
     print "Uploading zip... ",
