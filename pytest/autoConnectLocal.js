@@ -8,10 +8,9 @@ function AutoConnect(){
 }
 frame.DelayedExecute(1).Triggered.connect(this,AutoConnect);
 
-function Quit()
-    {
-        framework.Exit();
-    }
+function Quit(){
+    framework.Exit();
+}
 
 //asset.OpenAssetCache("~/realxtend/bin/data/assets");
 
