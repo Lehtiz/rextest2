@@ -1,3 +1,9 @@
+/*
+notes:
+- rotation doesn't work
+- doesn't check if connection to server was established
+*/
+
 var randomnumber=Math.floor(Math.random()*100)
 
 function AutoConnect(){
