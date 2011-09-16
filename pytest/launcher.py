@@ -12,7 +12,6 @@ from optparse import OptionParser
 import config
 
 # FTP-CONFIG for fileUpload
-uploadfile=False
 FTPHOST="xxx"
 FTPUSER="xxx"
 FTPPASSWD="xxx"
@@ -26,22 +25,27 @@ pw="hardcoded" #default password if -p is not used
 eoftimeout = 9999 #must be long enough for each test to complete
 suffix = (".py", ".js")
 
+# make a single archive file, if set to False file uploading is also disabled, 
+# single archive uploads can be enabled in autoreport.py
+archiveResults = True
+uploadfile=False
 
 def main():
     setup()
     runTests(runlist, paramlist, numberOfTests)
     summary(runlist, numberOfTests, exitstatus)
-    zipAll()
+    if archiveResults:
+        zipAll()
 
 def setup():
     global numberOfTests
     # list of tests, add new ones here files with the suffixes configured above are tested if they exist
     # and checked for optional parameters
     testlist.append("js-viewer-server-test.py -f " + config.rexbinDir + "scenes/Avatar/avatar.txml")
+    testlist.append("launchtundra.py -p '--server --headless --protocol udp --file ./../../../rextest2/PlaceableTest/placeabletest.txml'")
+    #testlist.append("launchtundra.py -p '--server --headless --protocol udp --file " + config.rexbinDir + "scenes/PlaceableTest/placeabletest.txml'")
     testlist.append("avatar-test.py -r 1 -c 1 -j local")
-    #testlist.append("launchtundra.py -p '--server --headless --protocol udp --file ./../../../rextest2/PlaceableTest/placeabletest.txml'")
-    testlist.append("launchtundra.py -p '--server --headless --protocol udp --file " + config.rexbinDir + "scenes/PlaceableTest/placeabletest.txml'")
-
+    
     #for-loop to check if all testscript files exist
     for i in range(0,len(testlist)):
         for suff in range(0,len(suffix)):
