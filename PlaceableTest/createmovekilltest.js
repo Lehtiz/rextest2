@@ -1,3 +1,4 @@
+// use random values for creation and moving
 useRandom = true;
 
 var isserver = server.IsRunning();
@@ -5,10 +6,11 @@ var outputEnabled = true;
 var entityName = "box";
 
 if(useRandom == true){
+    //initial location
     var x1 = Math.floor(10*Math.random());
     var y1 = Math.floor(10*Math.random());
     var z1 = Math.floor(10*Math.random());
-
+    //move to
     var x2 = Math.floor(10*Math.random());
     var y2 = Math.floor(10*Math.random());
     var z2 = Math.floor(10*Math.random());
@@ -19,7 +21,6 @@ else{
     var x1 = 0;
     var y1 = 6;
     var z1 = 0;
-
     //move to
     var x2 = 0;
     var y2 = 10;
