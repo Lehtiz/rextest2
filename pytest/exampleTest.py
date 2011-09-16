@@ -7,4 +7,4 @@ print "example test script"
 #test goes here
 
 #send the config name to autoreport and create the report if needed
-autoreport.autoreport("js-viewer-server-test") #<--<<
+autoreport.autoreport("exampletest") #<--<<

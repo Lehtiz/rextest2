@@ -1,7 +1,7 @@
 Tundra2
 
 config.py
-- needs rex bin directory configured
+- define all test-related directories here
 
 launcher.py:
 runs all configured tests: (needs root password if avatar test is included because of tshark)

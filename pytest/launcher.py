@@ -30,9 +30,9 @@ def setup():
     # list of tests, add new ones here files with the suffixes configured above are tested if they exist
     # and checked for optional parameters
     testlist.append("js-viewer-server-test.py -f " + config.rexbinDir + "scenes/Avatar/avatar.txml")
-    testlist.append("avatar-test.py -r 1 -c 1 -j local")
+    #testlist.append("avatar-test.py -r 1 -c 1 -j local")
     #testlist.append("launchtundra.py -p '--server --headless --protocol udp --file ./../../../rextest2/PlaceableTest/placeabletest.txml'")
-    testlist.append("launchtundra.py -p '--server --headless --protocol udp --file " + config.rexbinDir + "scenes/PlaceableTest/placeabletest.txml'")
+    #testlist.append("launchtundra.py -p '--server --headless --protocol udp --file " + config.rexbinDir + "scenes/PlaceableTest/placeabletest.txml'")
 
     #for-loop to check if all testscript files exist
     for i in range(0,len(testlist)):

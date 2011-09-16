@@ -9,10 +9,10 @@ import config
 import autoreport
 
 # folder config
-scriptDir = os.path.abspath(os.getcwd())
+scriptDir = config.scriptDir
 rexbinDir = config.rexbinDir
-testDir = os.path.abspath(os.path.join(scriptDir, '..'))
-logsDir = os.path.abspath(os.path.join(scriptDir, 'logs/launchtundra/'))
+testDir = config.testDir
+logsDir = config.tundraLogsDir
 
 # output files
 serverOutput = logsDir + "/s.out"
