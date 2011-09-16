@@ -5,10 +5,17 @@ import os
 import sys
 import time
 import zipfile
+import ftplib
 import glob
 import pexpect
 from optparse import OptionParser
 import config
+
+# FTP-CONFIG for fileUpload
+uploadfile=False
+FTPHOST="xxx"
+FTPUSER="xxx"
+FTPPASSWD="xxx"
 
 #config
 testlist = []
@@ -18,6 +25,7 @@ exitstatus = []
 pw="hardcoded" #default password if -p is not used
 eoftimeout = 9999 #must be long enough for each test to complete
 suffix = (".py", ".js")
+
 
 def main():
     setup()
@@ -93,8 +101,24 @@ def zipAll():
                     z.close()
                     os.remove(archives[i])
             print ("succesful")
+            if(uploadfile==True):
+                uploadFile(zipName)
         except:
             print ("failed")
+            
+def uploadFile(zipName):
+    # ftplib
+    #comma to prevent newline
+    print "Uploading zip... ",
+    try:
+        s = ftplib.FTP(FTPHOST, FTPUSER, FTPPASSWD) # server,login, passwd
+        f = open(zipName,'rb') # file to send (read, binary)
+        s.storbinary('STOR ' + zipName, f) # Send file
+        f.close() # Close file and FTP
+        s.quit()
+        print("successful")
+    except:
+        print("failed ")
 
 if __name__ == "__main__":
     parser = OptionParser()
