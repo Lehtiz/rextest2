@@ -1,10 +1,8 @@
---------------------------------------
-README for Tundra2 python test scripts
---------------------------------------
+realXtend Tundra 2.0 python test scripts
+=====================================
 
------------------------------------------
-1. File descriptions & usage instructions
------------------------------------------
+File descriptions & usage instructions
+--------------------------------------
 
 - autoreport.py
     - creates a zip containing the html summary + log files for each test
@@ -42,9 +40,8 @@ README for Tundra2 python test scripts
     - usage example:
         python launchtundra.py -p '--server --protocol udp --file scenes/scenex/x.txml'
 
--------------------------
-2. How to add a new test?
--------------------------
+How to add a new test?
+----------------------
 
 - In config.py, define the logs folder(s) path for your test under "FOLDER CONFIG"
 
