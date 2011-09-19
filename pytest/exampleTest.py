@@ -33,7 +33,7 @@ elif option == TEST4:
     global logFile
     global outputFile
 
-    testName = TEST3
+    testName = TEST4
     testComment = "This is an example"
     logDir = "logs/exampletest"
     # words to look for in the logfiles
