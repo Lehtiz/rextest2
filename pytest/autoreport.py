@@ -75,30 +75,15 @@ testComment = None
 errorPattern = None
 
 
-
-def testSkeleton():
-    global testName
-    global testComment
-    global errorPattern
-    global logDir
-    global logFile
-    global outputFile
-
-    testName = TEST0
-    testComment = "This is an example"
-    logDir = "logs/example"
-    errorPattern = [
-        'example',
-        'e.g.'
-    ]
-    logFile = [
-        '1.example',
-        '2.example',
-        '3.example'
-    ]
-    #files included in the zip archive
-    outputFile = glob.glob(logDir + '/*') #everything in outputDir, script presumes test outputs everything to its own output folder, files can also be added to a list individually
-    operation()
+def whichTestWasRun(option):
+    if option == TEST1:
+        jsViewerServerTest()
+    elif option == TEST2:
+        avatarTest()
+    elif option == TEST3:
+        launchTundra()
+    else:
+        print("Error: test config not found")
 
 def jsViewerServerTest():
     global testName
@@ -188,15 +173,6 @@ def operation():
         cleanUp()
     print "Finished..."
 
-def whichTestWasRun(option):
-    if option == TEST1:
-        jsViewerServerTest()
-    elif option == TEST2:
-        avatarTest()
-    elif option == TEST3:
-        launchTundra()
-    else:
-        print("Error: test config not found")
 
 def whatWentWrong():
     global errors
