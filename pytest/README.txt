@@ -2,6 +2,13 @@
 README for Tundra2 python test scripts
 --------------------------------------
 
+-----------------------------------------
+1. File descriptions & usage instructions
+-----------------------------------------
+
+- autoreport.py
+    - creates a zip containing the html summary + log files for each test
+
 - config.py
     - define launcher + auto-report settings & test-related directories here
 
@@ -35,4 +42,26 @@ README for Tundra2 python test scripts
     - usage example:
         python launchtundra.py -p '--server --protocol udp --file scenes/scenex/x.txml'
 
+-------------------------
+2. How to add a new test?
+-------------------------
+
+- In config.py, define the logs folder(s) path for your test under "FOLDER CONFIG"
+
+- Now you can import config to your newtest.py and add all the needed folders as follows: logsDir = config.testXLogsDir
+
+- In autoreport.py
+    - Add definition "TESTX = "newtest" under "CONSTANTS"
+    - Add a new function def newTest(), use the other functions for example def avatarTest() as a reference
+    - Add new elif condition for your test in whichTestWasRun function: elif option == TESTX: newTest()
+
+- Add variable "testName" to your newtest.py and import autoreport
+- Add a call to function autoreport.autoreport(testName). It needs to be called after test functions are completed
+
+- Finally, you need to modify launcher.py
+    - If your test doesn't require sudo password, add testlist.append("newtest.py -parameters") to the setup function
+    - If your test requires sudo password, add testlist.append("newtest.py -parameters") under the "if passwordSet:"
+      condition
+
+- If you encounter problems, check exampleTest.py for some additional information
 
