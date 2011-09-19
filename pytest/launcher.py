@@ -72,10 +72,13 @@ def setup():
 
 def runTests(runlist, paramlist, numberOfTests):
     for i in range(0,numberOfTests):
-        if  paramlist == None:
-            command = "python " + runlist[i]
-        else:
-            command = "python " + runlist[i] + str(paramlist[i])
+        try:
+            if  paramlist == None:
+                command = "python " + runlist[i]
+            else:
+                command = "python " + runlist[i] + str(paramlist[i])
+        except:
+            print("failed ")
         child = pexpect.spawn(command)
         child.logfile=sys.stdout
         i = child.expect(['password for', pexpect.EOF], timeout=eoftimeout)
