@@ -1,6 +1,6 @@
-######################################
+--------------------------------------
 README for Tundra2 python test scripts
-######################################
+--------------------------------------
 
 - config.py
     - define launcher + auto-report settings & test-related directories here
