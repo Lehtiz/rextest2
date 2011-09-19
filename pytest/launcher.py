@@ -44,7 +44,7 @@ def setup():
     # list of tests, files with the suffixes configured above are tested if they exist
     # and checked for optional parameters
     testlist.append("js-viewer-server-test.py -f " + config.rexbinDir + "scenes/Avatar/avatar.txml")
-    testlist.append("launchtundra.py -p '--server --headless --protocol udp --file " + config.rexbinDir + "scenes/PlaceableTest/placeabletest.txml'")
+    testlist.append("launchtundra.py -p '--server --headless --protocol udp --file " + config.rexbinDir + "scenes/TestScenes/PlaceableTest/placeabletest.txml'")
     
     #scripts that need to be run as super-user, 
     # if password is not set on launch these tests will not be added to the run queue
